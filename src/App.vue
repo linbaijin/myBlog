@@ -110,6 +110,11 @@
           </div>
         </div>
 
+        <p>
+          <router-link to="/editor">1111</router-link>
+        </p>
+        <router-view></router-view>
+
 </div>
 </template>
 
