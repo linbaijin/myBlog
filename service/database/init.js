@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 const db = "mongodb://localhost/myBlogDb"
+const glob = require('glob') //node的glob模块允许你使用 * 等符号，来写一个glob规则，像在shell里一样，获取匹配对应规则文件
+const {resolve} = require('path')// 将一系列路径或路径段解析为绝对路径
 
 exports.connect = ()=>{
     //连接数据库
@@ -34,4 +36,8 @@ exports.connect = ()=>{
             resolve()
         })
     })
+}
+
+exports.initSchemas = ()=>{
+    glob.sync(resolve(__dirname,'./schema/','**/*.js')).forEach(require)
 }

@@ -6,12 +6,7 @@
           <mu-row>
           <mu-col  sm="4" md="4" lg="4"><div class="blog-title"><span>myBlog</span></div></mu-col>
           <mu-col sm="8" md="8" lg="8">
-            <div class="nav-button">
-            <mu-button flat large color="primary">Linux</mu-button>
-            <mu-button flat large color="secondary">Python</mu-button>
-            <mu-button flat large color="success">Java</mu-button>
-            <mu-button flat large color="warning">JavaScript</mu-button>
-            </div>
+            <navbutton></navbutton>
           </mu-col>
           </mu-row>
         </div>
@@ -115,22 +110,21 @@
 </template>
 
 <script>
-
+import navbutton from '@/components/component/nav-button'
 export default {
   data() {
     return {
       list:[1,2,3,4,5,6,7,8]
     }
   },
+  components:{
+    navbutton
+  }
 }
 </script>
 
 <style scope>
-.nav-button{
-  float:right;
-  margin-right: 30px;
-  font-size: 26px;
-}
+
 .blog-title{
   font-size: 32px;
   margin-left: 30px;
