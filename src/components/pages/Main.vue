@@ -55,9 +55,9 @@
         <div id="home">
           <div id="main">
             <div id="main-content">
-              <mu-row>
+              <mu-row gutter>
                 <!-- 下方左侧 -->
-                <mu-col sm="2" md="2" lg="2">
+                <mu-col sm="12" md="2" lg="2">
                   <div id="left-main">
                     <div class="personal-info">
                       <div class="head-pic">
@@ -93,7 +93,7 @@
                   </div>
                 </mu-col>
                 <!-- 下方右侧 -->
-                <mu-col offset="1" sm="9" md="9" lg="9">
+                <mu-col sm="12" md="9" lg="9">
                     <keep-alive>
                         <router-view></router-view>
                     </keep-alive>

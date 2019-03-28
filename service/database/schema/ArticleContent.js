@@ -10,7 +10,7 @@ const articleSchema = new Schema({
     articleContent:{type:String},
     articleAuthor:{type:String},
     articleType:{type:String},
-    readNum:{type:Number},
+    readNum:{type:Number,default:0},
     creatAt:{type:Date,default:Date.now()},
     
 },{
