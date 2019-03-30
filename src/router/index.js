@@ -5,6 +5,7 @@ import editor from '@/components/pages/editor'
 import rightArticles from '@/components/pages/rightArticles'
 import register from '@/components/pages/register'
 import login from '@/components/pages/login'
+import articleInfo from '@/components/pages/articleInfo'
 Vue.use(Router)
 
 export default new Router({
@@ -23,6 +24,11 @@ export default new Router({
           name:'Editor',
           component:editor
         },
+        {
+          path:'/articleInfo',
+          name:'ArticleInfo',
+          component:articleInfo
+        }
       ]
     },
     {

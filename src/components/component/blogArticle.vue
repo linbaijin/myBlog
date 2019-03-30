@@ -1,22 +1,14 @@
 <template>
-    <div class="article">
+    <div class="article" @click="goArticleInfoPage">
         <div class="article-title">
-            <a href="#">玩的卡号的开始</a>
+            <a href="#">{{articleTitle}}</a>
         </div>
         <div class="abstract">
             <div class="abstract-desc">
-                东方嘉盛防守打法被害机申达股份史蒂芬
-                的几哈放假后不久就会不会技术部副放声大哭
-                是的恢复不上班方式基本符合结不结婚水电费是否是
-                东方嘉盛防守打法被害机申达股份史蒂芬
-                的几哈放假后不久就会不会技术部副放声大哭
-                是的恢复不上班方式基本符合结不结婚水电费是否是
-                东方嘉盛防守打法被害机申达股份史蒂芬
-                的几哈放假后不久就会不会技术部副放声大哭
-                是的恢复不上班方式基本符合结不结婚水电费是否是
+                {{articleDescription}}
             </div>
             <div class="abstract-foot">
-                 2018-12-10 00:47 Model-Zachary 阅读(51) 评论(0) 编辑
+                {{articleCreatTime}} Model-Zachary 阅读({{readNum}}) 评论(0)
             </div>
         </div>
     </div>
@@ -24,7 +16,17 @@
 
 <script>
     export default {
-        
+        props:['articleTitle','articleDescription','readNum','articleId','articleCreatTime'],
+        data() {
+            return {
+                message:'hello'
+            }
+        },
+        methods:{
+            goArticleInfoPage(){
+                this.$router.push({path:'/articleInfo',query:{articleId:this.articleId}})
+            }
+        }
     }
 </script>
 
