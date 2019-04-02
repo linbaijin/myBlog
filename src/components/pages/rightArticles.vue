@@ -1,13 +1,13 @@
 <template>
     <div id="right-main">
-        <div class="article-area" v-for="(item,index) in articleList" :key="index">
+        <article class="article-area" v-for="(item,index) in articleList" :key="index">
             <blogArticle :articleTitle="item.articleTitle" 
             :articleDescription="item.articleDescription" 
             :readNum="item.readNum"
             :articleId="item._id"
             :articleCreatTime="item.creatAt"
             ></blogArticle>
-        </div>
+        </article>
         <div class="pagination">
           <mu-pagination @change="changeCurrentPage" :total="totalNum" :page-size="pageSize" :current.sync="currentPage"></mu-pagination> 
         </div>
@@ -63,12 +63,26 @@ export default {
   width: 100%;
   height: auto;
 }
+/* #right-main .article-area:nth-child(1){
+  animation-delay: 0.1s;
+} */
 .article-area{
   width: 100%;
   height: auto;
+  /* animation:fade ease-out 1s forwards; */
+}
+@keyframes fade{
+  0%{
+    transform: translate3d(0,3em,0);
+    opacity: 0;
+  }
+  100%{
+    transform: translate3d(0,3em,0);
+    opacity: 1;
+  }
 }
 .pagination{
   max-width: 300px;
-  margin: 0 auto;
+  margin: 80px auto;
 }
 </style>

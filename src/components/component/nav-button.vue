@@ -1,18 +1,32 @@
 <template>
     <div class="nav-button">
         <ul>
-            <li class="user-headpic">
-                <mu-avatar size="26">
-                    <img src="../../assets/userheadpic.jpeg">
-                </mu-avatar>
+            <!-- 头像 -->
+            <li class="userInfo-li">
+                <mu-menu palcement="bottom-end" open-on-hover>
+                    <mu-avatar size="30">
+                        <img src="../../assets/userheadpic.jpeg">
+                    </mu-avatar>
+                    <mu-list slot="content">
+                        <mu-list-item button>
+                            <mu-list-item-title>个人中心</mu-list-item-title>
+                        </mu-list-item>
+                        <mu-list-item button>
+                            <mu-list-item-title>退出登录</mu-list-item-title>
+                        </mu-list-item>
+                    </mu-list>
+                </mu-menu>
             </li>
-            <li>
+            <li class="userInfo-li">
+                <span>Briken Lam</span>
+            </li>
+            <!-- <li>
                 <mu-badge content="12" badge-class="new-reminder" circle color="secondary">
                     <mu-button icon>
                         <mu-icon size="16" value="floder"></mu-icon>
                     </mu-button>
                 </mu-badge>
-            </li>
+            </li> -->
         </ul>
     </div>
 </template>
@@ -30,9 +44,11 @@
   width: 50%;
   float: right;
 }
-.user-headpic{
-    margin: 4px 10px;
-    max-width: 36px;
+.userInfo-li{
+    color: #c2a7dd;
+    font-size: 20px;
+    margin: 8px 10px;
+    min-width: 36px;
 }
 .new-reminder{
     max-width: 50px;

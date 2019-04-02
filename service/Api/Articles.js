@@ -27,7 +27,7 @@ router.get('/',(ctx)=>{
     const Article = mongoose.model('Article')
     let totalNum =  await Article.find({}).exec()
     const responseInfo = {_id:true,articleTitle:true,articleDescription:true,readNum:true,creatAt:true}//返回内容
-    await Article.find({},responseInfo).limit(pageSize).skip((currentPage-1)*pageSize).exec().then((result)=>{
+    await Article.find({},responseInfo).limit(pageSize).skip((currentPage-1)*pageSize).sort({creatAt:-1}).exec().then((result)=>{
         console.log(result)
         ctx.body = {
             code:200,

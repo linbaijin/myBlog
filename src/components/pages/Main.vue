@@ -65,7 +65,7 @@
                       </div>
                       
                       <div class="text-box">
-                        那一天的河川
+                      那一天的河川
                       宛若封存了千年的故事
                       不由自主的穿过了幽幽的隧道
                       忽然的瞬间在那久弃的教堂
@@ -149,12 +149,12 @@ h2 figure img {
     width: 100%;
     display: inline-block;
 }
-.blog-subtitle{
+/* .blog-subtitle{
   
-}
+} */
 .fade-area{
   width: 100%;
-  -webkit-animation: fadeIn .5s ease-in-out;
+  /* -webkit-animation: fadeIn .5s ease-in-out; */
   transition: fadeIN .5s ease-in-out;
 }
 .homepic-area{
@@ -283,6 +283,8 @@ p{
   line-height: 1.5;
 }
 #subtitlelist ul li p:hover{
+  cursor: pointer;
+  color: #42b983;
   width: 100%;
   height: auto;
   animation: subtitle_li .7s ease-in-out .5s infinite normal

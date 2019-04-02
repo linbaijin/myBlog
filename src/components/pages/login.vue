@@ -73,6 +73,8 @@ import Toast from 'muse-ui-toast'
                         console.log(response)
                         if(response.data.code===200&&response.data.message){
                             Toast.success('Login Success')
+                            sessionStorage.setItem('userName',this.validateForm.userName)
+                            this.$router.push({path:'/Main'})
                         }
                     }).catch((error)=>{
                         console.log(error)

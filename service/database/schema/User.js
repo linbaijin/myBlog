@@ -9,7 +9,10 @@ const userSchema = new Schema({
     userName:{unique:true,type:String},
     password:{type:String},
     creatAt:{type:Date,default:Date.now()},
-    lastLoginAt:{type:Date,default:Date.now()}
+    lastLoginAt:{type:Date,default:Date.now()},
+    name:{type:String,default:'Unkonw'},
+    sex:{type:String,default:'Unkonw'},
+    headpic:{type:String,default:'http://127.0.0.1:3000/defaultHeadpic.png'}
 },{
     collection:'User'
 })

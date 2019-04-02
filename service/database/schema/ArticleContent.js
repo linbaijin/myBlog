@@ -9,13 +9,18 @@ function formDate(dt){
     var year = dt.getFullYear()
     var month = dt.getMonth()+1
     var date = dt.getDate()
+    var hours = dt.getHours()
+    var minute = dt.getMinutes()
     if(month<10){
         month = '0'+month
     }
     if(date<10){
         date = '0'+date
     }
-    return year + '-' + month + '-' + date
+    if(minute<10){
+        minute = '0'+minute
+    }
+    return year + '-' + month + '-' + date + ' ' + hours + ':' + minute
 }//获取时间函数
 
 //创建文章Schema

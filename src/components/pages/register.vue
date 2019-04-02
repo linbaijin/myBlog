@@ -29,6 +29,7 @@ import Toast from 'muse-ui-toast'
     export default {
         data() {
             return {
+                checkUsernameMsg:'',
                 arrowRegist:null,
                 usernameRules:[
                     {validate:(val)=>!!val,message:'必须填写用户名'},
@@ -60,6 +61,24 @@ import Toast from 'muse-ui-toast'
                     isAgree:false
                 }
                 Toast.warning('Data has benn Clear!')
+            },
+            async checkUsername(){//检查用户名是否已存在
+                await this.submit()
+                if(this.arrowRegist){
+                    axios({
+                        url:url.checkUsername,
+                        method:'post',
+                        data:{
+                            userName:this.validateForm.userName
+                        }
+                    }).then((response)=>{
+                        if(response.data.message==="当前用户名可以注册"){
+                            this.checkUsernameMsg = response.data.message
+                        }
+                    }).catch((error)=>{
+                        console.log(error)
+                    })
+                }
             },
             async axiosRegisterUser(){
                 await this.submit()
