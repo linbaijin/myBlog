@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <transition name="fade" model="out-in">
-      <router-view></router-view>
+      <router-view class="position-view"></router-view>
     </transition>
     
   </div>
@@ -14,6 +14,13 @@
 </script>
 
 <style scoped>
+.position-view{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
 .main{
   width: 100%;
   height: 100%;
