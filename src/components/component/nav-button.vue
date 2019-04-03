@@ -1,24 +1,24 @@
 <template>
     <div class="nav-button">
-        <ul>
+        <ul v-if="isSignIn">
             <!-- 头像 -->
             <li class="userInfo-li">
                 <mu-menu palcement="bottom-end" open-on-hover>
-                    <mu-avatar size="30">
-                        <img src="../../assets/userheadpic.jpeg">
+                    <mu-avatar size="40">
+                        <img :src="headpic" style="width:100%">
                     </mu-avatar>
                     <mu-list slot="content">
                         <mu-list-item button>
                             <mu-list-item-title>个人中心</mu-list-item-title>
                         </mu-list-item>
-                        <mu-list-item button>
+                        <mu-list-item button @click="signOut">
                             <mu-list-item-title>退出登录</mu-list-item-title>
                         </mu-list-item>
                     </mu-list>
                 </mu-menu>
             </li>
             <li class="userInfo-li">
-                <span>Briken Lam</span>
+                <span>{{name}}</span>
             </li>
             <!-- <li>
                 <mu-badge content="12" badge-class="new-reminder" circle color="secondary">
@@ -28,12 +28,61 @@
                 </mu-badge>
             </li> -->
         </ul>
+        <router-link v-else to="/login">
+            <mu-button  flat color="primary">请登录</mu-button>
+        </router-link>
+        
     </div>
 </template>
 
 <script>
+import axios from 'axios'
+import url from '@/serviceApi.config.js'
     export default {
-        
+        data() {
+            return {
+                msg: '1',
+                headpic:'',
+                name:'',
+                userName:'',
+                isSignIn:false//登录状态
+            }
+        },
+        methods:{
+            getUserInfo(){//主页用户信息组件获取用户信息
+                axios({
+                    url:url.getUserInfo,
+                    method:'post',
+                    data:{
+                        userName:sessionStorage.getItem('userName')
+                    }
+                }).then((result)=>{
+                    this.headpic = result.data.message.headpic,
+                    this.name = result.data.message.name,
+                    this.userName = result.data.message.userName
+                })
+            },
+            signOut(){
+                sessionStorage.removeItem('userName')
+                console.log(sessionStorage.getItem('userName'))
+                this.isSignIn = false
+            },
+            isLogin(){
+                console.log(sessionStorage.getItem('userName'))
+                sessionStorage.getItem('userName')?this.isSignIn=true:this.isSignIn=false
+                console.log('signIn',this.isSignIn)
+            }
+        },
+        activated(){
+            this.isLogin()
+            if(this.isSignIn){
+                this.getUserInfo()
+            }
+            
+        },
+        created(){
+            this.isLogin()
+        }
     }
 </script>
 

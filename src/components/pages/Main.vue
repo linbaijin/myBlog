@@ -6,7 +6,9 @@
           <mu-row>
           <mu-col  sm="4" md="4" lg="4"><div class="blog-title"><span>myBlog</span></div></mu-col>
           <mu-col sm="8" md="8" lg="8">
-            <navbutton></navbutton>
+            <keep-alive>
+              <navbutton></navbutton>
+            </keep-alive>
           </mu-col>
           </mu-row>
         </div>

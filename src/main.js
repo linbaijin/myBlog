@@ -4,7 +4,12 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import 'muse-ui/lib/styles/base.less';
-import { Button, Select,AppBar,Grid,Avatar,Badge,Icon,Form,TextField,Checkbox,Chip,Snackbar,Pagination,Dialog,Radio,Menu,List} from 'muse-ui'
+import { 
+  Button, Select,AppBar,Grid,
+  Avatar,Badge,Icon,Form,TextField,
+  Checkbox,Chip,Snackbar,Pagination,
+  Dialog,Radio,Menu,List
+} from 'muse-ui'
 import Toast from 'muse-ui-toast'
 import 'muse-ui/lib/styles/theme.less';
 import uploader from 'vant/lib/uploader'
