@@ -23,12 +23,12 @@
                 <div class="transistion">
                   <h2 class="llfc-blog">
                     <figure class="transistion">
-                      <img src="../../assets/qianxun.png">
+                      <img src="../../assets/qianxun.png" style="width:100%">
                     </figure>
                   </h2>
                   <h2 class="blog-subtitle">
                     <figure class="transistion">
-                      <img src="../../assets/qianxuntext.png">
+                      <img src="../../assets/qianxuntext.png" style="width:100%">
                     </figure>
                   </h2>
                 </div>
@@ -80,15 +80,7 @@
                     <div id="subtitle">
                       <div id="subtitlelist" class="sub-list">
                         <ul>
-                          <li><p>Linux</p></li>
-                          <li><p>Java</p></li>
-                          <li><p>C++</p></li>
-                          <li><p>Python</p></li>
-                          <li><p>JavaScript</p></li>
-                          <li><p>RegExp正则</p></li>
-                          <li><p>Vue</p></li>
-                          <li><p>React</p></li>
-                          <li><p>Node</p></li>
+                          <li v-for="(item,index) in typeList" :key="index" @click="selectType(item)"><p>{{item}}</p></li>
                         </ul>
                       </div>
                     </div>
@@ -97,7 +89,9 @@
                 <!-- 下方右侧 -->
                 <mu-col sm="12" md="9" lg="9">
                     <keep-alive>
-                        <router-view></router-view>
+                      <transition :name="transitionName">
+                        <router-view class="position-view"></router-view>
+                      </transition>
                     </keep-alive>
                 </mu-col>
               </mu-row>
@@ -112,17 +106,37 @@
 </template>
 
 <script>
+import axios from 'axios'
+import url from '@/serviceApi.config.js'
+import Toast from 'muse-ui-toast'
 import navbutton from '@/components/component/nav-button'
 export default {
   data() {
     return {
-      list:[1,2,3,4,5,6,7,8]
+      typeList:['Linux','Java','C++','Python','JavaScript','RegExp正则','Vue','React','Node'],
+      transitionName:''
     }
   },
 
   components:{
     navbutton
   },
+  methods:{
+    selectType(type){
+      this.$router.push({path:'/selectArticle',query:{type:type}})
+    }
+  },
+  watch:{
+    $route(to,from){
+      console.log('to',to)
+      console.log('from',from)
+      if(to.path==='/articleInfo'){
+        this.transitionName = "slide-right"
+      }else if(from.path==='/main'){
+        this.transitionName = "slide-left"
+      }                
+    }     
+  }
 }
 </script>
 
@@ -243,7 +257,15 @@ h2 figure img {
 .img{
   width: 100%;
   border-radius: 50%;
-  
+  animation: arr 8s infinite normal linear;
+}
+@keyframes arr{
+  from{
+    transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(360deg);
+  }
 }
 .head-pic{
   width: 100%;
@@ -298,6 +320,39 @@ p{
   100%{
     transform: scale(1);
   }
+}
+
+.position-view{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  
+}
+
+.slide-right-enter-active,
+.slide-right-leave-active,
+.slide-left-enter-active,
+.slide-left-leave-active {
+  transition: all 1000ms;
+}
+
+.slide-right-enter {
+  opacity: 0;
+  transform: translate3d(-100%, 0, 0);
+}
+.slide-right-leave-to {
+  opacity: 0;
+  transform: translate3d(100%, 0, 0);
+}
+.slide-left-enter {
+  opacity: 0;
+  transform: translate3d(100%, 0, 0);
+}
+.slide-left-leave-to {
+  opacity: 0;
+  transform: translate3d(-100%, 0, 0);
 }
 
 </style>

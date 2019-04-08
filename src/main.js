@@ -49,3 +49,17 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
+router.beforeEach((to,form,next)=>{//路由守卫
+  if(to.matched.some(res=>res.meta.requireAuth)){
+    if(sessionStorage.getItem('userName')){
+      next()
+    }else{
+      next({
+        path:'/login'
+      })
+    }
+  }else{
+    next()
+  }
+})

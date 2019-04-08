@@ -7,6 +7,7 @@ import register from '@/components/pages/register'
 import login from '@/components/pages/login'
 import articleInfo from '@/components/pages/articleInfo'
 import userInfo from '@/components/pages/userInfo'
+import selectArticle from '@/components/pages/selectArticle'
 Vue.use(Router)
 
 export default new Router({
@@ -21,8 +22,16 @@ export default new Router({
           component:rightArticles
         },
         {
+          path:'/selectArticle',
+          name:'selectArticle',
+          component:selectArticle
+        },
+        {
           path:'/editor',
           name:'Editor',
+          meta:{
+            requireAuth:true//判断是否要登录,true为要,false为不要
+          },
           component:editor
         },
         {
@@ -45,6 +54,9 @@ export default new Router({
     {
       path:'/userInfo',
       name:'UserInfo',
+      meta:{
+        requireAuth:true//判断是否要登录,true为要,false为不要
+      },
       component:userInfo
     }
     

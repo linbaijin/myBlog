@@ -22,21 +22,28 @@ import url from '@/serviceApi.config.js'
 export default {
   data() {
     return {
+      type:'',
       totalNum:null,
       pageSize:5,
       currentPage:1,
       articleList:[]
     }
   },
-  created(){
-    this.getArticleList()
+//   activated(){
+//       this.type = this.$route.query.type
+//       this.getArticleList(this.type)
+//   },
+  mounted(){
+      this.type = this.$route.query.type
+      this.getArticleList(this.type)
   },
   methods:{
-    getArticleList(){
+    getArticleList(type){
       axios({
-        url:url.getArticleListUrl,
+        url:url.selectType,
         method:'post',
         data:{
+          type:this.type,
           pageSize:this.pageSize,
           currentPage:this.currentPage
         }
@@ -54,6 +61,12 @@ export default {
   },
   components:{
     blogArticle
+  },
+  watch:{
+      $route(to,from){
+          this.type = this.$route.query.type
+          this.getArticleList(this.type)
+      }
   }
 }
 </script>

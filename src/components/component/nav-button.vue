@@ -20,6 +20,12 @@
             <li class="userInfo-li">
                 <span>{{name}}</span>
             </li>
+            <li>
+                <router-link to="/editor">
+                    <mu-button flat color="error">写博客!</mu-button>
+                </router-link>
+                
+            </li>
             <!-- <li>
                 <mu-badge content="12" badge-class="new-reminder" circle color="secondary">
                     <mu-button icon>
@@ -64,13 +70,13 @@ import url from '@/serviceApi.config.js'
             },
             signOut(){
                 sessionStorage.removeItem('userName')
-                console.log(sessionStorage.getItem('userName'))
+                // console.log(sessionStorage.getItem('userName'))
                 this.isSignIn = false
             },
             isLogin(){
-                console.log(sessionStorage.getItem('userName'))
+                // console.log(sessionStorage.getItem('userName'))
                 sessionStorage.getItem('userName')?this.isSignIn=true:this.isSignIn=false
-                console.log('signIn',this.isSignIn)
+                // console.log('signIn',this.isSignIn)
             }
         },
         activated(){

@@ -39,7 +39,7 @@
     margin:0px 5px 18px 0px;
     min-height: 10px;
     padding: 5px 20px 10px;
-    animation: pullUp 2s linear 0.5s 1 normal
+    /* animation: pullUp 2s linear 0.5s 1 normal */
 }
 @keyframes pullUp{
     0%{
