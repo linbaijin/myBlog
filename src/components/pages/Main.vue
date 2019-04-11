@@ -88,11 +88,11 @@
                 </mu-col>
                 <!-- 下方右侧 -->
                 <mu-col sm="12" md="9" lg="9">
-                    <keep-alive>
                       <transition :name="transitionName">
-                        <router-view class="position-view"></router-view>
+                        <keep-alive>
+                          <router-view></router-view>
+                        </keep-alive>
                       </transition>
-                    </keep-alive>
                 </mu-col>
               </mu-row>
             </div>
@@ -218,6 +218,9 @@ h2 figure img {
   animation-direction: normal,alternate;
 }
 #home{
+  position: relative;
+  width: 100%;
+  height: 100%;
   margin: 0 auto;
 }
 #main{
@@ -227,7 +230,7 @@ h2 figure img {
 }
 #main-content{
   width: 100%;
-  position: relative;
+  height: 100%;
 }
 #left-main{
   width: 100%;
@@ -328,7 +331,7 @@ p{
   left: 0;
   right: 0;
   bottom: 0;
-  
+  width: 100%;
 }
 
 .slide-right-enter-active,

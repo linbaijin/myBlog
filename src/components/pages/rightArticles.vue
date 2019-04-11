@@ -5,6 +5,7 @@
             :articleDescription="item.articleDescription" 
             :readNum="item.readNum"
             :articleId="item._id"
+            :articleAuthor="item.articleAuthor"
             :articleCreatTime="item.creatAt"
             ></blogArticle>
         </article>

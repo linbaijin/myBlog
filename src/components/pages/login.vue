@@ -1,6 +1,6 @@
 <template>
 
-    <div class="login-main">
+    <div class="login-main" @keyup.enter="axiosLoginUser">
         <h1>登录</h1>
         <mu-container>
             <mu-form ref="form" :model="validateForm" class="mu-demo-form">

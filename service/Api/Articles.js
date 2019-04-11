@@ -26,7 +26,7 @@ router.get('/',(ctx)=>{
     let currentPage = pagingSetting.currentPage//当前页数
     const Article = mongoose.model('Article')
     let totalNum =  await Article.find({}).exec()
-    const responseInfo = {_id:true,articleTitle:true,articleDescription:true,readNum:true,creatAt:true}//返回内容
+    const responseInfo = {_id:true,articleTitle:true,articleDescription:true,articleAuthor:true,readNum:true,creatAt:true}//返回内容
     await Article.find({},responseInfo).limit(pageSize).skip((currentPage-1)*pageSize).sort({creatAt:-1}).exec().then((result)=>{
         console.log(result)
         ctx.body = {

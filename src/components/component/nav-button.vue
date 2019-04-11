@@ -8,9 +8,11 @@
                         <img :src="headpic" style="width:100%">
                     </mu-avatar>
                     <mu-list slot="content">
-                        <mu-list-item button>
+                        <router-link to="/userInfo">
+                            <mu-list-item button>
                             <mu-list-item-title>个人中心</mu-list-item-title>
                         </mu-list-item>
+                        </router-link>
                         <mu-list-item button @click="signOut">
                             <mu-list-item-title>退出登录</mu-list-item-title>
                         </mu-list-item>

@@ -56,7 +56,7 @@ import Toast from 'muse-ui-toast'
     export default {
         data() {
             return {
-                userName:'123456',
+                userName:sessionStorage.getItem('userName'),
                 openScroll:false,
                 form:{
                     name:'',
@@ -109,6 +109,7 @@ import Toast from 'muse-ui-toast'
                 formdata.append('name',this.form.name)
                 formdata.append('sex',this.form.sex)
                 console.log(formdata)
+                
                 axios({
                     url:url.uploadUserInfo,
                     method:'post',
@@ -126,6 +127,7 @@ import Toast from 'muse-ui-toast'
                     }
                 }).catch((error)=>{
                     console.log(error)
+                    this.closeDialog()
                 })
             }
         },

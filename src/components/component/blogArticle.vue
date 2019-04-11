@@ -8,7 +8,7 @@
                 {{articleDescription}}
             </div>
             <div class="abstract-foot">
-                {{articleCreatTime}} Model-Zachary 阅读({{readNum}}) 评论(0)
+                {{articleCreatTime}} {{articleAuthor}} 阅读({{readNum}}) 评论(0)
             </div>
         </div>
     </div>
@@ -16,7 +16,7 @@
 
 <script>
     export default {
-        props:['articleTitle','articleDescription','readNum','articleId','articleCreatTime'],
+        props:['articleTitle','articleDescription','readNum','articleId','articleCreatTime','articleAuthor'],
         data() {
             return {
                 message:'hello'
