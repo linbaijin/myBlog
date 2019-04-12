@@ -10,6 +10,12 @@
                 <mu-form-item label="密码" prop="password" :rules="passwordRules">
                     <mu-text-field type="password" v-model="validateForm.password" prop="password"></mu-text-field>
                 </mu-form-item>
+                <router-link to="/register">
+                    <mu-form-item>
+                        没有账号？注册鸭!
+                    </mu-form-item>
+                </router-link>
+                
                 <mu-form-item>
                     <mu-button color="primary" @click="axiosLoginUser">登录</mu-button>
                     <mu-button @click="clear">重置</mu-button>
@@ -96,7 +102,6 @@ import Toast from 'muse-ui-toast'
     width: 480px;
     height: 480px;
     margin: 0 auto;/*水平居中*/
-    position: relative;
     top: 50%;
     margin-top: -240px;
 }

@@ -23,9 +23,9 @@
                 <span>{{name}}</span>
             </li>
             <li>
-                <router-link to="/editor">
-                    <mu-button flat color="error">写博客!</mu-button>
-                </router-link>
+                
+                    <mu-button @click="goEditor" flat color="error">写博客!</mu-button>
+                
                 
             </li>
             <!-- <li>
@@ -79,6 +79,9 @@ import url from '@/serviceApi.config.js'
                 // console.log(sessionStorage.getItem('userName'))
                 sessionStorage.getItem('userName')?this.isSignIn=true:this.isSignIn=false
                 // console.log('signIn',this.isSignIn)
+            },
+            goEditor(){
+                this.$router.push({path:'/editor',query:{authorName:this.name}})
             }
         },
         activated(){

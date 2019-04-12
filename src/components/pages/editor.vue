@@ -18,7 +18,7 @@
                 </mu-form-item>
             </mu-form>
         </div>
-        <mavon-editor ref="md" v-model="articleContent" @change="$save" @imgAdd="$imgAdd" codeStyle="dark" fontSize="24px" :ishljs="true" :toolbars="markdownOptions" style="min-height:500px;"></mavon-editor>
+        <mavon-editor ref="md" v-model="articleContent" @change="$save" @imgAdd="$imgAdd" codeStyle="dark" fontSize="16px" :ishljs="true" :toolbars="markdownOptions" style="min-height:600px;"></mavon-editor>
         <div class="editor-footer">
             <mu-button flat color="success" @click="submitArticle">提交</mu-button>
             <mu-button flat color="error" @click="clear">重置</mu-button>  
@@ -78,7 +78,7 @@ import Toast from 'muse-ui-toast'
                     aligncenter: true, // 居中
                     alignright: true, // 右对齐
                 },
-                articleAuthor:'LeeBriken',
+                articleAuthor:this.$route.query.authorName,
                 options:['Linux','Java','C++','Python',
                     'JavaScript','RegExp','Vue','React'
                 ],
@@ -115,7 +115,8 @@ import Toast from 'muse-ui-toast'
                         articleType:this.dataForm.select,
                         articleDescription:this.dataForm.description,
                         articleContent:this.dataForm.articleContent,
-                        articleAuthor:this.articleAuthor
+                        articleAuthor:this.articleAuthor,
+                        authorUsername:sessionStorage.getItem('userName')
                     }
                 }).then((response)=>{
                     console.log(response)
@@ -124,6 +125,7 @@ import Toast from 'muse-ui-toast'
                     console.log(error)
                 })
             },
+
             clear(){
                 this.$refs.form.clear()
                 this.dataForm = {

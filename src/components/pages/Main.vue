@@ -4,7 +4,12 @@
         <!-- 导航栏 -->
         <div class="container">
           <mu-row>
-          <mu-col  sm="4" md="4" lg="4"><div class="blog-title"><span>myBlog</span></div></mu-col>
+          <mu-col  sm="4" md="4" lg="4">
+            <router-link to="/Main">
+            <div class="blog-title"><span style="color:black;">Welcome home!</span>
+            </div>
+            </router-link>
+            </mu-col>
           <mu-col sm="8" md="8" lg="8">
             <keep-alive>
               <navbutton></navbutton>
@@ -124,7 +129,7 @@ export default {
   methods:{
     selectType(type){
       this.$router.push({path:'/selectArticle',query:{type:type}})
-    }
+    },
   },
   watch:{
     $route(to,from){

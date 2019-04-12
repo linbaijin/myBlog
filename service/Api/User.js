@@ -80,6 +80,7 @@ router.post('/login',async(ctx)=>{//登录接口
 //获取用户信息接口
 router.post('/getUserInfo',async(ctx)=>{
     let loginUser = ctx.request.body
+    console.log(loginUser)
     let userName = loginUser.userName
     console.log(userName)
     const User = mongoose.model('User')
@@ -97,7 +98,7 @@ router.post('/getUserInfo',async(ctx)=>{
     })
 })
 
-//用户上传信息接口
+//用户上传信息接口(包括用户上传的头像)
 router.post('/uploadUserInfo',async(ctx)=>{
     let loginUser = ctx.request.body
     const User = mongoose.model('User')

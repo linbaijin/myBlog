@@ -1,4 +1,4 @@
-const ServiceBaseUrl = "http://127.0.0.1:3000"
+const ServiceBaseUrl = "http://123.207.231.39:3000"
 
 const url = {
     registerUrl : ServiceBaseUrl + '/user/register',//注册接口

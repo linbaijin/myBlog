@@ -16,6 +16,9 @@
                 <mu-form-item>
                     <mu-button color="primary" @click="axiosRegisterUser">提交</mu-button>
                     <mu-button @click="clear">重置</mu-button>
+                    <router-link to="/login">
+                        <mu-button color="success">去登陆!</mu-button>
+                    </router-link>
                 </mu-form-item>
             </mu-form>
         </mu-container>
@@ -95,6 +98,7 @@ import Toast from 'muse-ui-toast'
                         console.log(response)
                         if(response.data.code===200&&response.data.message){
                             Toast.success('Register Success')
+                            this.clear()
                         }
                     }).catch((error)=>{
                         console.log(error)
@@ -116,7 +120,6 @@ import Toast from 'muse-ui-toast'
     width: 480px;
     height: 480px;
     margin: 0 auto;/*水平居中*/
-    position: relative;
     top: 50%;
     margin-top: -240px;
 }

@@ -30,6 +30,7 @@ const articleSchema = new Schema({
     articleDescription:{type:String},
     articleContent:{type:String},
     articleAuthor:{type:String},
+    authorUsername:{type:String},
     articleType:{type:String},
     readNum:{type:Number,default:0},
     creatAt:{type:String,default:formDate()},

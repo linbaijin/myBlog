@@ -3,6 +3,7 @@
         <div class="main">
             <div class="personal-centern">
                 <h3>个人资料</h3>
+                <mu-button style="float:right;" flat color="success" @click="goback">返回</mu-button>
             </div>
             <div class="user-info">
                 <mu-row gutter>
@@ -129,6 +130,9 @@ import Toast from 'muse-ui-toast'
                     console.log(error)
                     this.closeDialog()
                 })
+            },
+            goback(){
+                this.$router.go(-1)
             }
         },
         created(){

@@ -41,33 +41,29 @@ router.get('/',(ctx)=>{
         }
     })
 }).post('/getArticleMainContent',async(ctx)=>{
-    let articleId = ctx.request.body.articleId
-    const Article = mongoose.model('Article')
-    await Article.findOne({_id:articleId}).exec().then((result)=>{
-        ctx.body = {
-            code:200,
-            message:result
-        }
-    }).catch((error)=>{
-        ctx.body = {
-            code:500,
-            message:error
-        }
-    })
-}).post('/getUpperAndLowerChapter',async(ctx)=>{//上下篇接口
-    try{
+    try {
         let articleId = ctx.request.body.articleId
         const Article = mongoose.model('Article')
+        let articleContent = await Article.findOne({_id:articleId}).exec()//获取主要内容
+        //获取上下篇
         const responseInfo = {_id:true,articleTitle:true}
         let upperChapter = await Article.find({_id:{'$lt':articleId}},responseInfo).sort({_id:-1}).limit(1).exec()//$lt小于操作符
         let lowerChapter = await Article.find({_id:{'$gt':articleId}},responseInfo).sort({_id:1}).limit(1).exec()//$gt大于操作符
+        //获取文章作者信息
+        let authorUsername = articleContent.authorUsername//作者用户名
+        const User = mongoose.model('User')
+        const userResponseInfo = {name:true,headpic:true}//要返回的作者信息
+        let userInfo = await User.findOne({userName:authorUsername},userResponseInfo).exec()
         ctx.body = {
             code:200,
-            message:{upperChapter:upperChapter[0],lowerChapter:lowerChapter[0]}
+            message:{
+                userInfo:userInfo,
+                articleContent:articleContent,
+                upperChapter:upperChapter[0],
+                lowerChapter:lowerChapter[0],
+            }
         }
-        // console.log(upperChapter)
-        // console.log(lowerChapter)
-    }catch(error){
+    } catch (error) {
         ctx.body = {
             code:500,
             message:error

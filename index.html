@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
     <title>myblog</title>
    
     <script src="https://cdn.bootcss.com/KaTeX/0.10.1/contrib/auto-render.js"></script>
@@ -14,10 +14,20 @@
             margin:0;
             padding: 0;
         }
+        h1{
+          margin: 0 !important;
+          padding: 0 !important;
+          font-size: 2rem !important;
+        }
     </style>
   </head>
   <body>
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>
+  <script>
+    let getWidth = window.innerWidth;
+    let htmlDom = document.getElementsByTagName('html')[0];
+    htmlDom.style.fontSizeb = getWidth/20 + 'px'
+  </script>
 </html>

@@ -1,11 +1,27 @@
 
 <template>
-    
         <div id="topics">
         <div class="content">
-            <div class="article-title">{{articleTitle}}</div>
-            <div class="article-cotent" v-html="articleContent">
+            
+            <div class="article-head">
+                <mu-row>
+                    <mu-col sm="6" md="6" lg="6">
+                        <h1>{{articleTitle}}</h1>
+                    </mu-col>
+                    <mu-col sm="6" md="6" lg="6">
+                        <div class="authorInfo">
+                            <mu-avatar size="40px" class="author-headpic">
+                                <img :src="authorHeadpic" >
+                            </mu-avatar>
+                            
+                            <div style="float:left;">{{authorName}}</div>
+                        </div>
+                        <mu-button style="float:right;" flat color="success" @click="goback">返回</mu-button>
+                    </mu-col>
+                </mu-row>
             </div>
+                
+            <div class="article-cotent" v-html="articleContent"></div>
         </div>
         <div class="foot">
             <div class="type">分类: {{articleType}}</div>
@@ -36,20 +52,21 @@ import url from '@/serviceApi.config.js'
                 upperArticleTitle:'',
                 lowerArticleId:'',
                 lowerArticleTitle:'',
+                authorName:'',
+                authorHeadpic:''
             }
         },
         activated(){
             this.articleId = this.$route.query.articleId
             this.getArticleContent()
-            this.getUpperAndLowerChapter()
-            console.log('up',this.upperArticleId)
-            console.log('low',this.lowerArticleId)
         },
-        mounted(){
-            this.articleId = this.$route.query.articleId
-            this.getArticleContent()
-            this.getUpperAndLowerChapter()
-        },
+        // async mounted(){
+        //     this.articleId = this.$route.query.articleId
+        //     await this.getArticleContent()
+        //     this.getAuthorInfo()
+        //     this.getUpperAndLowerChapter()
+            
+        // },
         // mounted(){
         //     this.articleId = this.$route.query.articleId
         //     this.getArticleContent()
@@ -62,42 +79,36 @@ import url from '@/serviceApi.config.js'
         //     }
         // },
         methods:{
-            getArticleContent(){
-                axios({
+            async getArticleContent(){//获取文章内容并获取作者账号
+                console.log(111)
+                await axios({
                     url:url.getArticleMainContent,
                     method:'post',
                     data:{
                         articleId:this.articleId
                     }
                 }).then((response)=>{
-                    this.articleTitle = response.data.message.articleTitle
-                    this.articleContent = response.data.message.articleContent
-                    this.articleType = response.data.message.articleType
-                }).catch((error)=>{
-                    console.log(error)
-                })
-            },
-            getUpperAndLowerChapter(){
-                axios({
-                    url:url.getUpperAndLowerChapter,
-                    method:'post',
-                    data:{
-                        articleId:this.articleId
-                    }
-                }).then((response)=>{
                     console.log(response)
-                    if('upperChapter' in response.data.message){
-                        this.upperArticleId = response.data.message.upperChapter._id
-                        this.upperArticleTitle = response.data.message.upperChapter.articleTitle
+                    let _item = response.data.message
+                    this.articleTitle = _item.articleContent.articleTitle
+                    this.articleContent = _item.articleContent.articleContent
+                    this.articleType = _item.articleContent.articleType
+                    this.authorName = _item.userInfo.name
+                    this.authorHeadpic = _item.userInfo.headpic
+                    if('upperChapter' in _item){
+                        this.upperArticleId = _item.upperChapter._id
+                        this.upperArticleTitle = _item.upperChapter.articleTitle
                     }else{
                         this.upperArticleId = ''
                     }
-                    if('lowerChapter' in response.data.message){
-                        this.lowerArticleId = response.data.message.lowerChapter._id
-                        this.lowerArticleTitle = response.data.message.lowerChapter.articleTitle
+                    if('lowerChapter' in _item){
+                        this.lowerArticleId = _item.lowerChapter._id
+                        this.lowerArticleTitle = _item.lowerChapter.articleTitle
                     }else{
                         this.lowerArticleId = ''
                     }
+                }).catch((error)=>{
+                    console.log(error)
                 })
             },
             goUpperChapter(){
@@ -105,6 +116,9 @@ import url from '@/serviceApi.config.js'
             },
             goLowerChapter(){
                 this.$router.push({path:'/articleInfo',query:{articleId:this.lowerArticleId}})
+            },
+            goback(){
+                this.$router.go(-1)
             }
         },
         // beforeRouteEnter (to, from, next) {
@@ -116,7 +130,6 @@ import url from '@/serviceApi.config.js'
                 console.log('from',from)
                 this.articleId = this.$route.query.articleId
                 this.getArticleContent()
-                this.getUpperAndLowerChapter()
             }
             
         }
@@ -134,15 +147,26 @@ import url from '@/serviceApi.config.js'
     padding: 15px;
     text-overflow: ellipsis;
     word-break: break-all;
-    position: relative;
 }
-.article-title{
+.article-head{
     font-size: 24px;
     border-bottom: 1px solid #dddddd;
     line-height: 1.5em;
     margin-bottom: 10px;
     padding-bottom: 5px;
     padding-left: 5px;
+    max-height: 50px;
+}
+.authorInfo{
+   width: 80%;
+   height: 100%;
+   margin: 0 auto;
+}
+.author-headpic{
+    width:40px;
+    height:40px;
+    margin-right: 20px;
+    float: left;
 }
 .article-cotent{
     padding: 20px;

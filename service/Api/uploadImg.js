@@ -9,7 +9,7 @@ router.post('/uploadImg',(ctx)=>{//文章图片上传接口
     ctx.body = {
         code:200,
         message:'上传成功',
-        path:'http://127.0.0.1:3000/'+uploadedPath
+        path:'http://123.207.231.39:3000/'+uploadedPath
     }
 })
 
